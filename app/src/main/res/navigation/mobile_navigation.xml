@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_news">
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.baloot.mirzazade.ui.profile.ProfileFragment"
+        android:label="@string/nav_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.baloot.mirzazade.ui.news.NewsListFragment"
+        android:label="@string/nav_news"
+        tools:layout="@layout/fragment_news" >
+        <action android:id="@+id/action_details_fragment"
+            app:destination="@id/nav_details_fragment"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_details_fragment"
+        android:name="com.baloot.mirzazade.ui.details.DetailsFragment"
+        android:label="@string/nav_details_fragment"
+        tools:layout="@layout/fragment_details" />
+
+</navigation>

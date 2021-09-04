@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgAvatar"
+                android:layout_width="114dp"
+                android:layout_height="114dp"
+                android:layout_gravity="center"
+                android:layout_margin="30dp"
+                android:src="@drawable/my_avatar"
+                app:shapeAppearance="@style/circleImageView" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Aliasghar Mirzazade"
+                    android:textColor="@color/grey_900"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btn_more_about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:text="(more about)"
+                    android:textColor="@color/blue_900"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/grey_200" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:autoLink="phone"
+                android:inputType="phone"
+                android:text="My mobile number : +98 913 088 9953"
+                android:padding="10dp"
+                android:textColor="@color/grey_900"
+                android:textStyle="bold"
+                android:textColorLink="@color/red_900"
+                tools:ignore="TextViewEdits" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:autoLink="email"
+                android:inputType="textEmailAddress"
+                android:text="My email address : maliasgharm@yahoo.com"
+                android:textColorLink="@color/red_900"
+                android:textColor="@color/grey_900"
+                android:textStyle="bold"
+                tools:ignore="TextViewEdits" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/grey_200" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/btnLinkedin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:autoLink="phone"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/ic_linkedin"
+                    android:drawablePadding="20dp"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    android:text="Linkedin"
+                    android:textColor="@color/grey_900"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_linkedin"
+                    tools:ignore="TextViewEdits" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/grey_200" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/btnGithub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:autoLink="phone"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableLeft="@drawable/ic_linkedin"
+                    android:drawablePadding="20dp"
+                    android:gravity="center"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    android:text="Github"
+                    android:textColor="@color/grey_900"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_github"
+                    tools:ignore="TextViewEdits" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>
