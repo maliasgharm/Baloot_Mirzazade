@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="@color/grey_100"
+        app:cardBackgroundColor="@color/grey_50"
         app:cardCornerRadius="15dp">
 
         <LinearLayout
@@ -22,7 +22,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                app:cardBackgroundColor="@color/grey_200"
+                app:cardBackgroundColor="@color/grey_100"
                 app:cardCornerRadius="15dp">
 
                 <androidx.appcompat.widget.AppCompatImageView

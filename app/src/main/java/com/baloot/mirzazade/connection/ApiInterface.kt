@@ -1,13 +1,9 @@
 package com.baloot.mirzazade.connection
 
-import android.annotation.SuppressLint
-import com.baloot.mirzazade.model.NewsResponse
 import retrofit2.http.GET
 import retrofit2.Call
 import com.baloot.mirzazade.model.Result
 import retrofit2.http.Query
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 interface ApiInterface {

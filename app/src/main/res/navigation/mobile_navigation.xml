@@ -16,6 +16,19 @@
         android:name="com.baloot.mirzazade.ui.news.NewsListFragment"
         android:label="@string/nav_news"
         tools:layout="@layout/fragment_news" >
+        <argument android:name="type" android:defaultValue="1"
+            app:argType="integer"/>
+        <action android:id="@+id/action_details_fragment"
+            app:destination="@id/nav_details_fragment"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_marked"
+        android:name="com.baloot.mirzazade.ui.news.NewsListFragment"
+        android:label="@string/nav_bookmarks"
+        tools:layout="@layout/fragment_news" >
+        <argument android:name="type" android:defaultValue="2"
+            app:argType="integer"/>
         <action android:id="@+id/action_details_fragment"
             app:destination="@id/nav_details_fragment"
             />

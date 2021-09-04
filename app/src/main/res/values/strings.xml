@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Baloot_Mirzazade</string>
     <string name="nav_news">News</string>
+    <string name="nav_bookmarks">Bookmarks</string>
+    <string name="mark">Mark</string>
+    <string name="unmark">UnMark</string>
     <string name="nav_profile">My Profile</string>
     <string name="new_sort_by">Sort by</string>
     <string name="nav_details_fragment">Details news</string>

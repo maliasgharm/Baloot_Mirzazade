@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
@@ -61,7 +62,7 @@
                 android:maxLines="3"
                 android:padding="10dp"
                 android:text="load more"
-                android:textColor="@color/blue_800"
+                android:textColor="@color/red_900"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 

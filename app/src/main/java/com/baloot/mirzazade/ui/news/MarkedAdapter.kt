@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.baloot.mirzazade.R
-import com.baloot.mirzazade.model.NewsResponse
+import com.baloot.mirzazade.model.NewsItem
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.row_news.view.*
 import java.io.Serializable
 import java.text.SimpleDateFormat
 
 
-class NewsAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class MarkedAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<MarkedAdapter.ViewHolder>() {
     private var listenerLoadMore: ((newPage : Int) -> Boolean)? = null
     private val handler = Handler(Looper.getMainLooper())
 
@@ -77,7 +77,7 @@ class NewsAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<NewsAda
         recyclerView.apply {
             val linearLayoutManager = LinearLayoutManager(recyclerView.context)
             layoutManager = linearLayoutManager
-            adapter = this@NewsAdapter
+            adapter = this@MarkedAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(
                     recyclerView: RecyclerView,
@@ -102,14 +102,14 @@ class NewsAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<NewsAda
     }
 
 
-    val listItems: List<NewsResponse>
+    val listItems: List<NewsItem>
         get() {
             return newsAdapterModel.items
         }
 
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addItem(items: List<NewsResponse>, replace: Boolean = false, loadedPage: Int) {
+    fun addItem(items: List<NewsItem>, replace: Boolean = false, loadedPage: Int) {
         if (replace) {
             newsAdapterModel.items.clear()
         }
@@ -177,11 +177,11 @@ class NewsAdapter(val recyclerView: RecyclerView) : RecyclerView.Adapter<NewsAda
     }
 
     class NewsAdapterModel(
-        var items: ArrayList<NewsResponse>,
+        var items: ArrayList<NewsItem>,
         var isEndList: Boolean,
         var lastAddCount: Int,
         var loadMore: Boolean,
-        var loadedPage : Int ,
+        var loadedPage : Int,
         var isAddMoreProgressBar: Boolean,
         var firstItemPosition: Int
     ) : Serializable

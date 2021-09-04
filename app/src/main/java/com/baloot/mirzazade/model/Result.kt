@@ -3,8 +3,9 @@ package com.baloot.mirzazade.model
 import com.baloot.mirzazade.db.ResponseDB
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class Result {
+class Result : Serializable{
 
     @SerializedName("status")
     var status: String = ""
@@ -13,12 +14,12 @@ class Result {
     var totalResults: Int = 0
 
     @SerializedName("articles")
-    var articles: List<NewsResponse> = ArrayList()
+    var articles: List<NewsItem> = ArrayList()
 
     constructor(
         status: String = "",
         totalResults: Int = 0,
-        articles: List<NewsResponse> = ArrayList()
+        articles: List<NewsItem> = ArrayList()
     ) {
         this.articles = articles
         this.totalResults = totalResults

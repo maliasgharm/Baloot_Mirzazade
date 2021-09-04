@@ -36,7 +36,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnGithub.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/maliasgharm"))
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/maliasgharm/Baloot_Mirzazade"))
             startActivity(browserIntent)
         }
 

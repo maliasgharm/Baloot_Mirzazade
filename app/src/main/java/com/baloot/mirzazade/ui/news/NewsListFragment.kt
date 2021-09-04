@@ -27,16 +27,17 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.Serializable
 import java.util.*
 
 
 class NewsListFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NewsListViewModel
     private var _binding: FragmentNewsBinding? = null
-    private var newsAdapter: NewsAdapter? = null
+    private var newsAdapter: MarkedAdapter? = null
     private var db: AppDatabase? = null
-    private val model : NewsListViewModel by activityViewModels()
+    private val model: NewsListViewModel by activityViewModels()
+    private var typeList: TypeList = TypeList.NEWS
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -47,31 +48,23 @@ class NewsListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        notificationsViewModel =
-            ViewModelProvider(this).get(NewsListViewModel::class.java)
-
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        typeList = when (requireArguments().getInt("type")) {
+            2 -> TypeList.MARKED
+            else -> TypeList.NEWS
+        }
         super.onViewCreated(view, savedInstanceState)
         db = Room.databaseBuilder(
             requireContext(),
             AppDatabase::class.java,
             requireContext().packageName
         ).build()
-        newsAdapter = NewsAdapter(binding.rvMain)
-        model.newsAdapterModel.observe(viewLifecycleOwner){
-            newsAdapter?.onRestoreState(it)
-            if (it == null){
-                requestNews()
-            }
-        }
-        newsAdapter?.setOnLoadMoreListener {
-            requestNews(it)
-            false
-        }
+        newsAdapter = MarkedAdapter(binding.rvMain)
+
         newsAdapter?.setOnItemClickListener { view, position ->
             val args = Bundle()
             args.putSerializable(
@@ -82,16 +75,52 @@ class NewsListFragment : Fragment() {
                 .navigate(R.id.action_details_fragment, args)
         }
 
+        if (typeList == TypeList.MARKED) {
+            model.newsAdapterModelMarked.observe(viewLifecycleOwner) {
+                newsAdapter?.onRestoreState(it)
+            }
+            loadMarkedList()
+            return
+        }
+        newsAdapter?.setOnLoadMoreListener {
+            requestNews(it)
+            false
+        }
+
+        model.newsAdapterModel.observe(viewLifecycleOwner) {
+            newsAdapter?.onRestoreState(it)
+            if (it == null) {
+                requestNews()
+            }
+        }
+
+    }
+
+    private fun loadMarkedList() {
+        val handler = Handler(Looper.getMainLooper())
+        Thread {
+            val list = db?.newsItem()?.getAllMarked() ?: return@Thread
+            handler.post {
+                newsAdapter?.addItem(list, true, 1)
+                newsAdapter?.setIsEnd(true)
+                binding.tvError.isVisible = list.isEmpty()
+                if (list.isEmpty()) {
+                    binding.tvError.text = "Bookmarks is empty"
+                }
+            }
+        }.start()
     }
 
     override fun onPause() {
         super.onPause()
-        model.setModelAdapter(newsAdapter?.onSaveState())
+        if (typeList == TypeList.NEWS)
+            model.setModelAdapter(newsAdapter?.onSaveState())
+        else
+            model.setModelMarkedAdapter(newsAdapter?.onSaveState())
     }
 
     private fun requestNews(page: Int = 1) {
         val apiService = getClient()!!.create(ApiInterface::class.java)
-        Log.w(TAG, "requestNews => page : $page")
         val newsResponse = apiService.getNews(page = page)
         val handler = Handler(Looper.getMainLooper())
         if (page == 1 && newsAdapter?.listItems?.size ?: 0 == 0) {
@@ -100,7 +129,6 @@ class NewsListFragment : Fragment() {
         binding.tvError.isVisible = false
         binding.tvError.setOnClickListener(null)
         Thread {
-
             val cacheData = db?.responseDb()?.loadAllByPageNumberResult(page)
             if (cacheData != null && page == 1) {
                 handler.post {
@@ -110,7 +138,7 @@ class NewsListFragment : Fragment() {
         }.start()
         newsResponse?.enqueue(object : Callback<Result?> {
             override fun onResponse(call: Call<Result?>?, response: Response<Result?>) {
-                if(_binding == null)
+                if (_binding == null)
                     return
                 val result = response.body()
                 binding.pb.isVisible = false
@@ -145,7 +173,7 @@ class NewsListFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Result?>?, t: Throwable?) {
-                if(_binding == null)
+                if (_binding == null)
                     return
                 binding.pb.isVisible = false
                 binding.tvError.isVisible = true
@@ -169,6 +197,10 @@ class NewsListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    enum class TypeList : Serializable {
+        NEWS, MARKED
     }
 
     companion object {
