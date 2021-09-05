@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/Theme.Baloot_Mirzazade"
+        android:name=".BApplication"
         tools:ignore="UnusedAttribute">
         <activity
             android:name="com.baloot.mirzazade.MainActivity"

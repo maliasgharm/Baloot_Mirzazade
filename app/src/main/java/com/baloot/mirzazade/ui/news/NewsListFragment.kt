@@ -23,6 +23,7 @@ import com.baloot.mirzazade.db.AppDatabase
 import com.baloot.mirzazade.model.Result
 import com.baloot.mirzazade.ui.details.DetailsFragment
 import com.google.gson.Gson
+import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,7 +31,7 @@ import retrofit2.Response
 import java.io.Serializable
 import java.util.*
 
-
+@AndroidEntryPoint
 class NewsListFragment : Fragment() {
 
     private var _binding: FragmentNewsBinding? = null

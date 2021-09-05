@@ -14,8 +14,12 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.widget.FrameLayout
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.components.FragmentComponent
 
-
+@AndroidEntryPoint
 class AboutMeFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentAboutMeBinding? = null
     private val binding get() = _binding!!

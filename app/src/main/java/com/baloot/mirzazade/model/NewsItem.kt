@@ -5,9 +5,14 @@ import com.google.gson.Gson
 import javax.annotation.Generated
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import java.io.Serializable
 
 
+@Module
+@InstallIn(ActivityComponent::class)
 @Generated("jsonschema2pojo")
 class NewsItem : Serializable {
     @SerializedName("source")

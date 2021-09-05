@@ -3,8 +3,13 @@ package com.baloot.mirzazade.model
 import com.baloot.mirzazade.db.ResponseDB
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import java.io.Serializable
 
+@Module
+@InstallIn(ActivityComponent::class)
 class Result : Serializable{
 
     @SerializedName("status")

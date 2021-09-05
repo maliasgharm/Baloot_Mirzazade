@@ -16,8 +16,12 @@ import com.baloot.mirzazade.R
 import com.bumptech.glide.Glide
 import androidx.room.Room
 import com.baloot.mirzazade.db.AppDatabase
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.components.FragmentComponent
 
-
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private var db: AppDatabase? = null
     private var _binding: FragmentDetailsBinding? = null

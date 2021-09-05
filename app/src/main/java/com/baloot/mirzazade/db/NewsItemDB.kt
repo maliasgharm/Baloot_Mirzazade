@@ -9,9 +9,15 @@ import com.google.gson.Gson
 import javax.annotation.Generated
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 import java.io.Serializable
 
 
+@InstallIn(SingletonComponent::class)
+@Module
 @Entity(tableName = "news_item")
 class NewsItemDB(
     @ColumnInfo
